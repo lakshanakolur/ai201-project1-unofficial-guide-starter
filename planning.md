@@ -10,6 +10,8 @@
 ## Domain
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
+The domain i chose was Campus Dining! Im a big foodie and Im always curious on finding the best places to eat on campus during my time at NYU.
+I love to explore different cafeterias and since NYU is in the middle of the city, they also have a couple of different offers and selections that we can take advantage of. Its harder to find thorugh official channels on which dining halls serve what, which food is better, which ones are worth the cost and if people have dietary restrictions and some dining halls say officially they cater to it, but the food is never available that would be a very useful use-case with this RAG. 
 
 ---
 
@@ -20,16 +22,16 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Official NYU dining page| | nyu.edu/students/student-information-and-resources/housing-and-dining/dining.html|
+| 2 | NYUEats| | dineoncampus.com/NYUeats|
+| 3 | Allergen Guide| | https://www.nyu.edu/content/dam/nyu/campusServices/misc/24-25-dining/NYU%20Eats%20Allergen%20Guide.pdf|
+| 4 | Dietary options| | https://www.nyu.edu/students/student-information-and-resources/housing-and-dining/dining/dietary-options.html?challenge=d06e90d7-4d8f-4b88-9d8c-10b73beb60f1|
+| 5 | Brooklyn Meal Plans| | https://www.nyu.edu/students/student-information-and-resources/housing-and-dining/dining/nyu-meal-plan/brooklyn-meal-plans.html?challenge=d06e90d7-4d8f-4b88-9d8c-10b73beb60f1|
+| 6 | Dining Cheat Sheet Article| | https://meet.nyu.edu/academics/student-voices/dining-hall-nyu-eats/|
+| 7 | NYU news - dining| | https://nyunews.com/?s=dining|
+| 8 | Reddit|Dining Hall for NYU r/nyu thread | https://www.reddit.com/r/nyu/search/?q=dining+hall&cId=d77d3b17-3c32-4607-b1a2-fc94aa52835b&iId=96148a0b-0dc0-463c-9059-e11315c37441|
+| 9 | Reddit| |https://www.reddit.com/r/nyu/search/?q=meal+plan&cId=274bb81d-565d-4edb-96f3-5138efc3ebc9&iId=9221ea28-9e0e-4a60-a41c-d355a972d965 |
+| 10 | Yelp| | https://www.yelp.com/biz/weinstein-passport-dining-hall-new-york|
 
 ---
 
