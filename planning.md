@@ -25,7 +25,7 @@ I love to explore different cafeterias and since NYU is in the middle of the cit
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
 | 1 | Official NYU dining page | | https://nyu.edu/students/student-information-and-resources/housing-and-dining/dining.html |
-| 2 | NYUEats | | https://dineoncampus.com/NYUeats |
+| 2 | NYUEats | [Removing this since the info is already present in other sources]| https://dineoncampus.com/NYUeats |
 | 3 | Allergen Guide | | https://www.nyu.edu/content/dam/nyu/campusServices/misc/24-25-dining/NYU%20Eats%20Allergen%20Guide.pdf |
 | 4 | Dietary options | | https://www.nyu.edu/students/student-information-and-resources/housing-and-dining/dining/dietary-options.html |
 | 5 | Brooklyn Meal Plans | | https://www.nyu.edu/students/student-information-and-resources/housing-and-dining/dining/nyu-meal-plan/brooklyn-meal-plans.html |
@@ -40,9 +40,9 @@ I love to explore different cafeterias and since NYU is in the middle of the cit
 | 14 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/1s5snid/dining_hall_vs_offcampus_food/ |
 | 15 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/pl7q2x/dining_hall_rant/ |
 | 16 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/1hgwvzf/what_should_i_know_about_the_dining_halls/ |
-| 16 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/mpbcl/dining_halls/ |
-| 16 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/1flj4de/best_dining_halls_go/ |
-| 16 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/8iwih0/is_it_worth_keeping_the_meal_plan_after_freshman/ |
+| 17 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/mpbcl/dining_halls/ |
+| 18 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/1flj4de/best_dining_halls_go/ |
+| 19 | Reddit r/nyu |  | https://www.reddit.com/r/nyu/comments/8iwih0/is_it_worth_keeping_the_meal_plan_after_freshman/ |
 
 ---
 
@@ -115,6 +115,8 @@ For this project, MiniLM is the right call; in production the choice would depen
 
 4. Chunks splitting key information across boundaries - a review that says "the chicken is great..." in one chunk and "...but only on Tuesdays, every other day it's awful" in the next chunk. Retrieved alone, the first chunk gives a misleading answer. 
 
+5. noisy manually-copied documents are a real risk for retrieval quality
+
 ---
 
 ## Architecture
@@ -170,10 +172,15 @@ For this project, MiniLM is the right call; in production the choice would depen
 Tool: Claude
 
 Input: Domain section, Documents section (including all source URLs), Chunking Strategy section, and Architecture diagram to give full pipeline context.
+All URLs are not scrapable so I am adding a data/ folder where I will manually copy-paste the text from the websites into .txt files
+And for PDFs use pdfplumber 
 
 Expected output: ingest.py containing:
 
-A document loading function that scrapes each source URL and loads the allergen PDF
+load_documents() that handles three types of sources:
+Scrapable URLs — fetched using BeautifulSoup + requests
+Manually saved sources (blocked sites, Reddit, Yelp) — loaded from a data/ folder as .txt files, clean this up using clean_document() function that removes unnecessary white spaces, date, upvote, ads, etc that come from a reddit or yelp source
+Allergen PDF — extracted using pdfplumber
 chunk_documents() that takes chunk size (300) and overlap (75) as inputs and returns chunked documents
 chunk_documents() should save chunks to a file (e.g. chunks.json)
 
@@ -181,12 +188,10 @@ Verification:
 
 Print the total number of documents successfully loaded and spot-check each source by printing the first 200 characters of its content to confirm scraping worked
 
-For any sources that block scraping (Reddit, some NYU pages), note these will be handled manually
-
 Print the total number of chunks produced, the token size of each chunk, and randomly sample 5 chunks to verify they are the right size and contain coherent text
 
 ```python
-load_documents(urls: list[str]) -> list[str]
+load_documents(urls: list[str], data_dir: str = "data/") -> list[str]
 chunk_documents(docs: list[str], chunk_size: int = 300, overlap: int = 75) -> list[str]
 ```
 
